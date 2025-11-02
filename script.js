@@ -128,7 +128,7 @@ function init() {
             
             updateCoordsDisplay();
             
-            // Создаем временную метку для preview
+            //Создаем временную метку для preview
             if (tempPlacemark) {
                 myMap.geoObjects.remove(tempPlacemark);
             }
