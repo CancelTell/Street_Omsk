@@ -4,15 +4,17 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #B3F4B1;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
     font-family: Arial, sans-serif;
+    color: #333;
 }
 
 /* Шапка с информацией пользователя */
 .header {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     padding: 10px 20px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-bottom: 1px solid #ddd;
 }
 
 .user-info {
@@ -25,11 +27,11 @@ body {
 
 #userGreeting {
     font-weight: 600;
-    color: #2c3e50;
+    color: #333;
 }
 
 .logout-btn {
-    background: #e74c3c;
+    background: #757575;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -40,7 +42,7 @@ body {
 }
 
 .logout-btn:hover {
-    background: #c0392b;
+    background: #616161;
     transform: translateY(-1px);
 }
 
@@ -57,25 +59,18 @@ body {
     height: 100%;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
 }
 
-
-.map-button:hover {
-    background: #dca7ee;
-    transform: translateX(-50%) translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-
-/* Нижнее меню - стеклянный эффект */
 .map-button {
-    background: #D78FEE;
+    background: #ffffff;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(138, 14, 166, 0.787);
+    border: 1px solid #bdbdbd;
     border-radius: 25px;
     box-shadow: 
-        0 8px 32px rgba(195, 194, 194, 0.54),
-        inset 0 1px 0 rgba(191, 184, 184, 0.758);
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
     margin: 0 auto 20px auto;
     width: 220px;
     position: absolute;
@@ -85,8 +80,18 @@ body {
     z-index: 1000;
     padding: 12px 24px;
     font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
+.map-button:hover {
+    background: #f0f0f0;
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Нижнее меню */
 .menu-options {
     display: flex;
     justify-content: space-between;
@@ -96,13 +101,13 @@ body {
 }
 
 .menu-option {
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(189, 189, 189, 0.6);
     padding: 12px 10px;
     border-radius: 20px;
     cursor: pointer;
     transition: all 0.4s ease;
-    color: #2c3e50;
+    color: #424242;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -113,19 +118,19 @@ body {
 }
 
 .menu-option:hover {
-    background: rgba(255, 255, 255, 0.4);
-    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(158, 158, 158, 0.8);
     transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .menu-option.active {
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(255, 255, 255, 0.9);
-    color: #1a237e;
+    background: rgba(255, 255, 255, 0.95);
+    border-color: #9e9e9e;
+    color: #212121;
     box-shadow: 
-        0 4px 20px rgba(76, 175, 80, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        0 4px 20px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
     transform: translateY(-1px);
 }
 
@@ -148,13 +153,14 @@ body {
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #ffffff;
     margin: 5% auto;
     padding: 20px;
     border-radius: 10px;
     width: 80%;
     max-width: 500px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    border: 1px solid #e0e0e0;
 }
 
 .auth-content {
@@ -164,10 +170,11 @@ body {
 .auth-info {
     margin-top: 20px;
     padding: 15px;
-    background: #f8f9fa;
+    background: #f5f5f5;
     border-radius: 5px;
     font-size: 14px;
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid #757575;
+    color: #424242;
 }
 
 .auth-info p {
@@ -175,7 +182,7 @@ body {
 }
 
 .close {
-    color: #aaa;
+    color: #757575;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -183,7 +190,7 @@ body {
 }
 
 .close:hover {
-    color: #000;
+    color: #424242;
 }
 
 .form-group {
@@ -194,6 +201,7 @@ body {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    color: #424242;
 }
 
 .form-group input,
@@ -204,6 +212,16 @@ body {
     border: 1px solid #ddd;
     border-radius: 4px;
     box-sizing: border-box;
+    background: #fafafa;
+    color: #333;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #9e9e9e;
+    background: #fff;
 }
 
 .coords-display {
@@ -211,6 +229,7 @@ body {
     background-color: #f5f5f5;
     border-radius: 4px;
     font-family: monospace;
+    color: #666;
 }
 
 .form-buttons {
@@ -229,12 +248,12 @@ body {
 }
 
 .form-buttons button:first-child {
-    background-color: #6c757d;
+    background-color: #9e9e9e;
     color: white;
 }
 
 .form-buttons button:last-child {
-    background-color: #4CAF50;
+    background-color: #757575;
     color: white;
 }
 
@@ -260,22 +279,23 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
+    color: #333;
 }
 
 .placemark-description {
     margin-bottom: 10px;
-    color: #333;
+    color: #424242;
 }
 
 .placemark-coords {
-    color: #666;
+    color: #757575;
     font-size: 11px;
     font-family: monospace;
 }
 
 .placemark-author {
     font-size: 12px;
-    color: #777;
+    color: #9e9e9e;
     margin-top: 8px;
     border-top: 1px solid #eee;
     padding-top: 6px;
@@ -284,7 +304,7 @@ body {
 .placemark-type {
     display: inline-block;
     padding: 4px 12px;
-    background: #4CAF50;
+    background: #757575;
     color: white;
     border-radius: 15px;
     font-size: 12px;
@@ -293,23 +313,26 @@ body {
 }
 
 .placemark-type[data-type="request"] {
-    background: #9c27b0;
+    background: #616161;
 }
 
 .placemark-contacts {
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px dashed #ccc;
+    border-top: 1px dashed #ddd;
     font-size: 13px;
+    color: #424242;
 }
 
 .placemark-contacts a {
-    color: #1a73e8;
+    color: #424242;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .placemark-contacts a:hover {
     text-decoration: underline;
+    color: #212121;
 }
 
 /* Стили для всплывающих уведомлений */
@@ -331,6 +354,7 @@ body {
     font-weight: 500;
     max-width: 300px;
     word-wrap: break-word;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .notification.success {
@@ -380,4 +404,20 @@ body {
         gap: 10px;
         text-align: center;
     }
+}
+
+.auth-links {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.auth-links a {
+    color: #424242;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+    color: #212121;
 }
