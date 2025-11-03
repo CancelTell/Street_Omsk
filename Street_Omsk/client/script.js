@@ -194,6 +194,8 @@ function init() {
     initAuth();
 }
 
+
+
 function initMap() {
     myMap = new ymaps.Map('map', {
         center: [54.992440, 73.368591],
@@ -226,10 +228,12 @@ function initMap() {
             }
             
             tempPlacemark = new ymaps.Placemark(selectedCoords, {}, {
-                preset: 'islands#blueDotIcon',
+                iconLayout: 'default#image',
+                iconImageHref: 'images/metka_1.png', // Иконка для временной метки
+                iconImageSize: [1112, 31112],
                 draggable: true
             });
-            
+                        
             myMap.geoObjects.add(tempPlacemark);
             
             tempPlacemark.events.add('dragend', function () {
@@ -242,6 +246,14 @@ function initMap() {
             isSelectingMode = false;
         }
     });
+}
+
+function getIconForType(type) {
+    const icons = {
+        'street': 'images/metka_1.png',
+        'request': 'images/metka_2.png'
+    };
+    return icons[type];
 }
 
 function loadPlacemarks() {
@@ -286,7 +298,13 @@ function addPlacemarkToMap(placemarkData) {
     const placemark = new ymaps.Placemark(
         [placemarkData.lat, placemarkData.lng],
         { balloonContent, hintContent: placemarkData.name },
-        { preset: iconPreset }
+        {
+            iconLayout: 'default#image',
+            iconImageHref: getIconForType(placemarkData.type), // Ваша PNG-иконка
+            iconImageSize: [32, 32], // Размер иконки
+            iconImageOffset: [-16, -16], // Смещение для центрирования
+        balloonCloseButton: true
+        }
     );
 
     placemark.userData = placemarkData;
