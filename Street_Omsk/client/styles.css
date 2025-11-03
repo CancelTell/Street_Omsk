@@ -1,0 +1,394 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #B3F4B1;
+    font-family: Arial, sans-serif;
+}
+
+/* Шапка с информацией пользователя */
+.header {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#userGreeting {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.logout-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+}
+
+.map-container {
+    position: relative;
+    width: 90%;
+    height: 75vh;
+    margin: 20px auto 10px auto;
+    flex: 1;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.map-button {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 12px 24px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.map-button:hover {
+    background: #45a049;
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+/* Нижнее меню - стеклянный эффект */
+.bottom-menu {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    padding: 12px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    margin: 0 auto 20px auto;
+    width: 360px;
+    position: relative;
+}
+
+.menu-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    gap: 6px;
+}
+
+.menu-option {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 12px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    color: #2c3e50;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex: 1;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.menu-option:hover {
+    background: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.menu-option.active {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #1a237e;
+    box-shadow: 
+        0 4px 20px rgba(76, 175, 80, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transform: translateY(-1px);
+}
+
+.menu-text {
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.auth-content {
+    max-width: 400px;
+}
+
+.auth-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    font-size: 14px;
+    border-left: 4px solid #4CAF50;
+}
+
+.auth-info p {
+    margin: 5px 0;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.coords-display {
+    padding: 8px;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-buttons button:first-child {
+    background-color: #6c757d;
+    color: white;
+}
+
+.form-buttons button:last-child {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.form-buttons button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Стили для балуна метки */
+.placemark-balloon {
+    max-width: 300px;
+}
+
+.placemark-photo {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.placemark-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.placemark-description {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.placemark-coords {
+    color: #666;
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.placemark-author {
+    font-size: 12px;
+    color: #777;
+    margin-top: 8px;
+    border-top: 1px solid #eee;
+    padding-top: 6px;
+}
+
+.placemark-type {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.placemark-type[data-type="request"] {
+    background: #9c27b0;
+}
+
+.placemark-contacts {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ccc;
+    font-size: 13px;
+}
+
+.placemark-contacts a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+.placemark-contacts a:hover {
+    text-decoration: underline;
+}
+
+/* Стили для всплывающих уведомлений */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.notification {
+    position: relative;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+.notification.success {
+    background: #4CAF50;
+    color: white;
+}
+
+.notification.error {
+    background: #f44336;
+    color: white;
+}
+
+.notification.warning {
+    background: #ff9800;
+    color: #333;
+}
+
+.notification.info {
+    background: #2196F3;
+    color: white;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .map-container {
+        width: 95%;
+        height: 70vh;
+    }
+    
+    .bottom-menu {
+        width: 280px;
+        padding: 10px;
+    }
+    
+    .menu-option {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 90%;
+    }
+    
+    .user-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}

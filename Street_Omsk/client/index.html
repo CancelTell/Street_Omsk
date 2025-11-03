@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Карта событий Омска</title>
+</head>
+<body>
+    <!-- Модальное окно авторизации -->
+    <div id="authModal" class="modal">
+        <div class="modal-content auth-content">
+            <!-- Форма входа -->
+            <div id="loginForm">
+                <h2>Вход в систему</h2>
+                <form id="authForm">
+                    <div class="form-group">
+                        <label for="username">Логин:</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit">Войти</button>
+                    </div>
+                </form>
+                <div class="auth-links">
+                    <p>Нет аккаунта? <a href="#" onclick="showRegisterForm()">Зарегистрироваться</a></p>
+                </div>
+            </div>
+
+            <!-- Форма регистрации -->
+            <div id="registerForm" style="display: none;">
+                <h2>Регистрация</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="regUsername">Логин:*</label>
+                        <input type="text" id="regUsername" required>
+                        <small>Минимум 3 символа</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Пароль:*</label>
+                        <input type="password" id="regPassword" required>
+                        <small>Минимум 6 символов</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="regName">Имя:*</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email:</label>
+                        <input type="email" id="regEmail">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" onclick="showLoginForm()">Назад</button>
+                        <button type="submit">Зарегистрироваться</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="auth-info">
+                <p>Тестовые пользователи:</p>
+                <p>Логин: <strong>admin</strong> Пароль: <strong>admin123</strong></p>
+                <p>Логин: <strong>user</strong> Пароль: <strong>user123</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной интерфейс -->
+    <div id="mainApp" style="display: none;">
+        <div class="header">
+            <div class="user-info">
+                <span id="userGreeting">Добро пожаловать!</span>
+                <button class="logout-btn" onclick="logout()">Выйти</button>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <button class="map-button add-button" onclick="openAddForm()">
+                Добавить объект
+            </button>
+        </div>
+
+        <!-- Нижнее меню выбора -->
+        <div class="bottom-menu">
+            <div class="menu-options">
+                <button class="menu-option" data-type="event">
+                    <span class="menu-text">EVENT</span>
+                </button>
+                <button class="menu-option" data-type="street">
+                    <span class="menu-text">STREET</span>
+                </button>
+                <button class="menu-option active" data-type="request">
+                    <span class="menu-text">ЗАПРОСЫ</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="notification-container"></div>
+
+        <!-- Модальное окно для добавления метки -->
+        <div id="addFormModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddForm()">&times;</span>
+                <h2>Добавить новый объект</h2>
+                <form id="placemarkForm">
+                    <div class="form-group">
+                        <label for="placemarkName">Название:</label>
+                        <input type="text" id="placemarkName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="placemarkDescription">Описание:</label>
+                        <textarea id="placemarkDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="placemarkType">Тип:</label>
+                        <select id="placemarkType">
+                            <option value="event">Событие или мероприятие</option>
+                            <option value="street">Граффити / уличное искусство</option>
+                            <option value="request">Заявка на роспись (для заказчиков)</option>
+                        </select>
+                    </div>
+                    <div class="form-group contact-fields" style="display: none;">
+                        <label for="placemarkPhone">Телефон (для заявок):</label>
+                        <input type="tel" id="placemarkPhone" placeholder="+7 (999) 123-45-67">
+                    </div>
+                    <div class="form-group contact-fields" style="display: none;">
+                        <label for="placemarkTelegram">Telegram username (без @):</label>
+                        <input type="text" id="placemarkTelegram" placeholder="ivan_ivanov">
+                    </div>
+                    <div class="form-group">
+                        <label>Координаты:</label>
+                        <div class="coords-display">
+                            <span id="coordLat">не выбраны</span>, 
+                            <span id="coordLng">не выбраны</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="placemarkPhoto">Фото (опционально):</label>
+                        <input type="file" id="placemarkPhoto" accept="image/*">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" onclick="cancelForm()">Отмена</button>
+                        <button type="submit">Сохранить объект</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=ваш_ключ" type="text/javascript"></script>
+    <script src="script.js"></script>
+</body>
+</html>
