@@ -1,0 +1,269 @@
+:root {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f8f9fa;
+    --accent-color: #007AFF;
+    --accent-hover: #0056CC;
+    --text-primary: #1D1D1F;
+    --text-secondary: #86868B;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --success-color: #34C759;
+    --error-color: #FF3B30;
+    --warning-color: #FF9500;
+    --info-color: #5856D6;
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: none;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: url('images/background.png');
+    font-family: "Play", sans-serif;
+    color: var(--text-primary);
+}
+
+.header {
+    padding-bottom: 2%;
+}
+
+.logout-btn {
+    width: 15%;
+    height: 60pt;
+    background: url('images/logout.png') center/contain no-repeat;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    float: right;
+}
+
+.logout-btn:hover {
+    transform: translateY(-1px);
+}
+
+.map-container {
+    position: relative;
+    margin: auto;
+    margin-top: 2.5%;
+}
+
+#map {
+    width: 100%;
+    height: 110%;
+    border-radius: var(--border-radius);
+}
+
+.map-button {
+    position: absolute;
+    top: 90%;
+    border: none;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.map-button:hover {
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: var(--primary-bg);
+    margin: 5% auto;
+    padding: 32px;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-medium);
+}
+
+.close {
+    color: var(--text-secondary);
+    float: right;
+    font-size: 28px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--text-primary);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: var(--secondary-bg);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.coords-display {
+    padding: 12px;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+    font-family: monospace;
+    color: var(--text-secondary);
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    gap: 12px;
+}
+
+.form-buttons button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.form-buttons button:first-child {
+    background: var(--text-secondary);
+    color: white;
+}
+
+.form-buttons button:last-child {
+    background: var(--accent-color);
+    color: white;
+}
+
+.form-buttons button:hover {
+    transform: translateY(-1px);
+}
+
+.auth-info {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--secondary-bg);
+    border-radius: 8px;
+    font-size: 14px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.auth-links {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.auth-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-links a:hover {
+    text-decoration: underline;
+}
+
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+.notification {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    font-size: 14px;
+    font-weight: 500;
+    max-width: 300px;
+}
+
+.notification.success {
+    background: var(--success-color);
+    color: white;
+}
+
+.notification.error {
+    background: var(--error-color);
+    color: white;
+}
+
+.notification.warning {
+    background: var(--warning-color);
+    color: white;
+}
+
+.notification.info {
+    background: var(--info-color);
+    color: white;
+}
+
+.map-container {
+    width: 96%;
+    height: 75vh;
+}
+
+.map-button {
+    width: 15%;
+    height: 20%;
+    background: url(images/add_mark.png) center/contain no-repeat;
+}
+
+.modal-content {
+    margin: 10% auto;
+    width: 94%;
+    padding: 24px;
+}
+
+.placemark-photo {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.placemark-photo img {
+    max-width: 100%;
+    max-height: 200px;
+    border: 1px solid #671bbe;
+}

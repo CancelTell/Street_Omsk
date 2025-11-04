@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Street Omsk</title>
+    <link rel="icon" href="images/Spray_Can.webp" type="image/x-icon">
+</head>
+<body>
+    <!-- Модальное окно авторизации -->
+    <div id="authModal" class="modal">
+        <div class="modal-content auth-content">
+            <div id="loginForm">
+                <span class="close" onclick="closeAuthModal()">&times;</span>
+                <h2>Вход в систему</h2>
+                <form id="authForm">
+                    <div class="form-group">
+                        <label for="username">Логин:</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Пароль:</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit">Войти</button>
+                    </div>
+                </form>
+                <div class="auth-links">
+                    <p>Нет аккаунта? <a href="#" onclick="showRegisterForm()">Зарегистрироваться</a></p>
+                </div>
+            </div>
+
+            <div id="registerForm" style="display: none;">
+                <span class="close" onclick="closeAuthModal()">&times;</span>
+                <h2>Регистрация</h2>
+                <form id="registerFormElement">
+                    <div class="form-group">
+                        <label for="regUsername">Логин:*</label>
+                        <input type="text" id="regUsername" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPassword">Пароль:*</label>
+                        <input type="password" id="regPassword" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regName">Имя:*</label>
+                        <input type="text" id="regName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email:</label>
+                        <input type="email" id="regEmail">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" onclick="showLoginForm()">Назад</button>
+                        <button type="submit">Зарегистрироваться</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="auth-info">
+                <p>Тестовые пользователи:</p>
+                <p>Логин: <strong>admin</strong> Пароль: <strong>admin123</strong></p>
+                <p>Логин: <strong>user</strong> Пароль: <strong>user123</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Основной интерфейс -->
+    <div id="mainApp" style="display: none;">
+        <div class="header">
+            <!-- TODO: add account info -->
+            <button class="info-btn" onclick="logout()"></button>
+            <button class="logout-btn" onclick="logout()"></button>
+        </div>
+
+        <div class="map-container">
+            <div id="map">
+            <button class="map-button add-button" onclick="openAddForm()"></button>
+            </div>
+        </div>
+
+        <div id="notification-container"></div>
+
+        <!-- Модальное окно для добавления метки -->
+        <div id="addFormModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeAddForm()">&times;</span>
+                <h2>Добавить новый объект</h2>
+                <form id="placemarkForm">
+                    <div class="form-group">
+                        <label for="placemarkName">Название:</label>
+                        <input type="text" id="placemarkName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="placemarkDescription">Описание:</label>
+                        <textarea id="placemarkDescription" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="placemarkType">Тип:</label>
+                        <select id="placemarkType">
+                            <option value="street">Граффити / уличное искусство</option>
+                            <option value="request">Заявка на роспись</option>
+                        </select>
+                    </div>
+                    <div class="form-group contact-fields" style="display: none;">
+                        <label for="placemarkPhone">Телефон:</label>
+                        <input type="tel" id="placemarkPhone">
+                    </div>
+                    <div class="form-group contact-fields" style="display: none;">
+                        <label for="placemarkTelegram">Telegram:</label>
+                        <input type="text" id="placemarkTelegram">
+                    </div>
+                    <div class="form-group">
+                        <label>Координаты:</label>
+                        <div class="coords-display">
+                            <span id="coordLat">не выбраны</span>, 
+                            <span id="coordLng">не выбраны</span>
+                        </div>
+                    </div>
+                    <div class="photo-upload-container">
+                        <label for="placemarkPhoto"></label>
+                        <input type="file" id="placemarkPhoto" accept="image/*"
+                        onchange="handlePhoto(this)">
+                    </div>
+                    <div class="form-buttons">
+                        <button type="submit">Сохранить объект</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=ваш_ключ" type="text/javascript"></script>
+    <script src="src/api.js"></script>
+    <script src="src/notifications.js"></script>
+    <script src="src/auth.js"></script>
+    <script src="src/map.js"></script>
+    <script src="src/main.js"></script>
+</body>
+</html>
